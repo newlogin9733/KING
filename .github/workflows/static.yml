@@ -1,43 +1,118 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Happy Birthday Greeting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8ffae 0%, #43cea2 100%);
+      position: relative;
+    }
+    .greeting-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(66, 133, 244, 0.18);
+      padding: 40px 32px;
+      max-width: 400px;
+      text-align: center;
+      margin: 40px 0 80px 0;
+    }
+    .greeting-card h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ef476f;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    .greeting-card p {
+      color: #444;
+      font-size: 1.25em;
+      line-height: 1.5;
+    }
+    .greeting-card .emoji {
+      font-size: 38px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .sparkle {
+      color: #ffd166;
+      animation: sparkle 2s linear infinite;
+    }
+    @keyframes sparkle {
+      0%, 100% { filter: brightness(1.5); }
+      50% { filter: brightness(2.5); }
+    }
+    .insta-link {
+      position: fixed;
+      bottom: 24px;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+    }
+    .insta-link a {
+      background: linear-gradient(90deg, #fd5d7d 0%, #fcb045 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 4px 16px 0 rgba(253,93,125,0.13);
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .insta-link a:hover {
+      background: linear-gradient(90deg, #fcb045 0%, #fd5d7d 100%);
+      transform: scale(1.05);
+    }
+    .insta-icon {
+      font-size: 1.3em;
+      vertical-align: middle;
+    }
+    @media (max-width: 500px) {
+      .greeting-card {
+        padding: 24px 8px;
+        max-width: 98vw;
+      }
+      .insta-link a {
+        font-size: 1em;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="greeting-card">
+    <span class="emoji sparkle">🎉</span>
+    <h1>Happy Birthday!</h1>
+    <p>
+      Wishing you a day filled with joy, laughter, and unforgettable memories.<br>
+      May your year ahead sparkle with amazing moments and endless happiness!<br>
+      <span class="emoji">💖🥳🎂</span>
+    </p>
+    <p style="margin-top: 18px; font-size:1.1em; color:#118ab2;">
+      You are truly special—today is all about you!<br>
+      Shine bright and chase your dreams!
+    </p>
+  </div>
+  <div class="insta-link">
+    <a href="https://instagram.com/your_instagram_username" target="_blank" rel="noopener">
+      <span class="insta-icon">📷</span>
+      Connect on Instagram
+    </a>
+  </div>
+</body>
+</html>
